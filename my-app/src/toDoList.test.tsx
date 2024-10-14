@@ -16,13 +16,13 @@ test('displays all items in the to-do list', () => {
 
   test('updates the number of checked items and matches the count displayed', () => {
     render(<ToDoList />);
-    const item1Checkbox = screen.getByLabelText("Apples"); 
-    const item2Checkbox = screen.getByLabelText("Bananas");
+    const item1Checkbox = screen.getByLabelText('Apples');
+    const item2Checkbox = screen.getByLabelText('Bananas');
 
     expect(screen.getByText("Items bought: 0")).toBeInTheDocument();
-    fireEvent.click(item1Checkbox);
-    expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
     fireEvent.click(item2Checkbox);
+    expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
+    fireEvent.click(item1Checkbox);
     expect(screen.getByText("Items bought: 2")).toBeInTheDocument();
     fireEvent.click(item1Checkbox);
     expect(screen.getByText("Items bought: 1")).toBeInTheDocument();
