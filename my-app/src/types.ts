@@ -12,3 +12,4 @@ export enum Label {
     label: Label;
 };
 
+export type GroceryItem = { name: string; isPurchased: boolean };
