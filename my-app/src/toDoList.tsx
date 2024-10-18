@@ -14,23 +14,20 @@ export function ToDoList() {
  let [items, setItems] = useState(dummyGroceryList);
 
  function handleCheckboxClick(e: React.ChangeEvent<HTMLInputElement>) {
-   const checkbox: HTMLInputElement = e.target as HTMLInputElement;
+  const checkbox: HTMLInputElement = e.target as HTMLInputElement;
+  const itemName = checkbox.name;
 
-   const itemName = checkbox.name;
+  const newItems = items.map((item) =>
+    item.name === itemName
+      ? { ...item, isPurchased: checkbox.checked }
+      : item
+  );
 
-   const itemIndex = items.findIndex((item) => item.name === itemName);
-   items[itemIndex] = { name: itemName, isPurchased: checkbox.checked };
+  setItems(newItems);
 
-   const uncheckedItems = items.filter((item) => !item.isPurchased);
-   const checkedItems = items.filter((item) => item.isPurchased);
+  const diff = checkbox.checked ? 1 : -1;
+  setNumRemainingItems(numRemainingItems + diff);
 
-   const newItems = uncheckedItems.concat(checkedItems);
-
-   setItems(newItems);
-
-   const diff = checkbox.checked ? 1 : -1;
-
-   setNumRemainingItems(numRemainingItems + diff);
  }
 
  return (
